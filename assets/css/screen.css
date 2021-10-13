@@ -3,16 +3,23 @@
    License: none (public domain)
 */
 /* stylelint-disable */
-a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,caption,center,cite,code,dd,del,details,dfn,div,dl,dt,em,embed,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,img,ins,kbd,label,legend,li,mark,menu,nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,tt,u,ul,var,video{margin:0;padding:0;border:0;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section{display:block}html{line-height:1}body{line-height:inherit}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:after,blockquote:before,q:after,q:before{content:'';content:none}table{border-collapse:collapse;border-spacing:0}
+a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,caption,center,cite,code,dd,del,details,dfn,div,dl,dt,em,embed,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,img,ins,kbd,label,legend,li,mark,menu,nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,tt,u,ul,var,video{margin:0;padding:0;border:0;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section{display:block}html,.stylelint{line-height:1}body{line-height:inherit}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:after,blockquote:before,q:after,q:before{content:'';content:none}table{border-collapse:collapse;border-spacing:0}
 /* stylelint-enable */
+
+/* SMACSS:
+
+/* Base Styles */
+/* Selectors: element */
+/* Styles: typography, colors, etc. */
+
 
 /* Begin site styles below */
 * {
   box-sizing: border-box;
 }
 html {
-  font-size: 22px;
-  line-height: 24px;
+  font-size: 16px;
+  line-height: 18px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
@@ -22,18 +29,67 @@ img {
   max-width: 100%;
 }
 
-figure {
-  position: relative;
-}
 figcaption {
-  position: absolute;
-  bottom: 0px;
   color: #EEE;
   background: rgba(20,20,20,0.8);
-  width: 100%;
-  padding: 6px;
 }
+
+/* Layout Rules */
+/* Selectors: IDs, possibly classes */
+/* Styles: layout, spacing, alignment */
+
+/* Module Rules */
+/* Selectors: classes, possible IDs */
+/* Styles: Alignment, color, special, repeating stuff */
 
 .photo-gallery li {
   margin-bottom: 12px;
+}
+
+/* State Rules */
+/* Selectors: classes FROM JAVASCRIPT */
+/* Styles: Just about anything, really. */
+
+/* MEDIA QUERIES */
+
+@media screen and (min-width: 300px) {
+  figure {
+    position: relative;
+  }
+  figcaption {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 6px;
+  }
+}
+@media screen and (min-width: 440px) {
+  html {
+    font-size: 22px;
+    line-height: 24px;
+  }
+}
+@media screen and (min-width: 585px) {
+  figure {
+    display: grid;
+    grid-template-columns: 4fr 3fr;
+    grid-template-rows: auto;
+    grid-gap: 12px;
+    gap: 12px;
+  }
+  figcaption {
+    position: static;
+    grid-column: 2;
+    grid-row: 1;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .photo-gallery {
+    display: grid;
+    /* Intrinsic design alert! */
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-gap: 24px;
+    gap: 24px;
+  }
 }
